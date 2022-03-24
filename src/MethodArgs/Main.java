@@ -31,7 +31,9 @@ public class Main {
         System.out.println("Map contains c4 after editing = " + mapOfCars.containsKey(c4));
         c2.setColor("Yellow");
         c2.setCountOfDoors(6);
-
+        /* Вопрос: почему когда я проверяю, есть ли ключ с4 в мапе, он пишет что есть (я переопределил методы
+        * HashCode и equals), но после изменения ключа с2 и с4 - пишет, что такого ключа нет.
+        * Видимо нельзя менять ключ после создания мапы? */
         System.out.println("Hash c2 & c4 = " + (c2.hashCode() == c4.hashCode()));
         System.out.println("Equals c2 & c4 = " + c2.equals(c4));
         System.out.println("Map contains c4 after editing c2 = " + mapOfCars.containsKey(c4));
