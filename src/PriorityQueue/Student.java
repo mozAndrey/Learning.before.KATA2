@@ -36,6 +36,14 @@ public class Student implements Comparable<Student> {
         this.surname = surname;
         this.course = course;
         averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
+        if (course==0) {
+            try {
+                throw new Exception("Ты ввел крус 0, такого быть не может");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
         handlingExceptions();
     }
 
@@ -45,6 +53,14 @@ public class Student implements Comparable<Student> {
         this.course = course;
         this.averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
         this.averageGrade = averageGrade;
+        if (course==0) {
+            try {
+                throw new Exception("Ты ввел крус 0, такого быть не может");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
         handlingExceptions();
     }
 
@@ -56,6 +72,14 @@ public class Student implements Comparable<Student> {
         this.gradeOfHistory = gradeOfHistory;
         this.gradeOfMath = gradeOfMath;
         averageGrade = (this.gradeOfHistory / 3) + (this.gradeOfMath / 3) + (this.gradeOfPhysics / 3);
+        if (course==0) {
+            try {
+                throw new Exception("Ты ввел крус 0, такого быть не может");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
         handlingExceptions();
 
     }
@@ -84,7 +108,7 @@ public class Student implements Comparable<Student> {
     }
 
     void handlingExceptions() {
-        if (course > 4 || course < 1) {
+        if (course > 4 || course < 0) {
             try {
                 throw new Exception("Курс должен быть от 1 до 4");
             } catch (Exception e) {
@@ -92,7 +116,7 @@ public class Student implements Comparable<Student> {
                 System.exit(1);
             }
         }
-        if (name.contains("!") || name.contains("?") || name.contains(" ") || name.contains("&") || name.contains("@") ||
+        if (name.contains("!") || name.contains("?") || name.contains("&") || name.contains("@") ||
                 name.contains("#") || name.contains("$") || name.contains("%") || name.contains("^") || name.contains("*") ||
                 name.contains("(") || name.contains(")")) {
             try {
@@ -102,7 +126,7 @@ public class Student implements Comparable<Student> {
                 System.exit(1);
             }
         }
-        if (surname.contains("!") || surname.contains("?") || surname.contains(" ") || surname.contains("&") ||
+        if (surname.contains("!") || surname.contains("?") || surname.contains("&") ||
                 surname.contains("@") || surname.contains("#") || surname.contains("$") || surname.contains("%") ||
                 surname.contains("^") || surname.contains("*") || surname.contains("(") || surname.contains(")")) {
             try {
@@ -115,6 +139,22 @@ public class Student implements Comparable<Student> {
         if (gradeOfPhysics < 0 || gradeOfMath < 0 || gradeOfHistory < 0) {
             try {
                 throw  new Exception("Оценка не может быть отрицательной");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
+        if (name.contains(" ")) {
+            try {
+                throw new Exception("В каком-то имени лишний пробел, проверь.");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
+        if (surname.contains(" ")) {
+            try {
+                throw new Exception("В какой-то фамилии лишний пробел, проверь.");
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(1);
