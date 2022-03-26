@@ -1,9 +1,10 @@
 package PriorityQueue;
 
+
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Student implements Comparable<Student>{
+public class Student implements Comparable<Student> {
     final String name;
     final String surname;
     int course;
@@ -21,19 +22,13 @@ public class Student implements Comparable<Student>{
                 "Средняя оценка: " + averageGrade + '\n';
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
 
     public Student(String name, String surname) {
         this.name = name;
         this.surname = surname;
-
         averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
+        handlingExceptions();
+
     }
 
     public Student(String name, String surname, int course) {
@@ -41,6 +36,7 @@ public class Student implements Comparable<Student>{
         this.surname = surname;
         this.course = course;
         averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
+        handlingExceptions();
     }
 
     public Student(String name, String surname, int course, double averageGrade) {
@@ -49,6 +45,7 @@ public class Student implements Comparable<Student>{
         this.course = course;
         this.averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
         this.averageGrade = averageGrade;
+        handlingExceptions();
     }
 
     public Student(String name, String surname, int course, double gradeOfPhysics, double gradeOfMath, double gradeOfHistory) {
@@ -59,8 +56,9 @@ public class Student implements Comparable<Student>{
         this.gradeOfHistory = gradeOfHistory;
         this.gradeOfMath = gradeOfMath;
         averageGrade = (this.gradeOfHistory / 3) + (this.gradeOfMath / 3) + (this.gradeOfPhysics / 3);
-    }
+        handlingExceptions();
 
+    }
 
 
     @Override
@@ -83,6 +81,45 @@ public class Student implements Comparable<Student>{
             result = this.surname.compareTo(o.surname);
         }
         return result;
+    }
+
+    void handlingExceptions() {
+        if (course > 4 || course < 1) {
+            try {
+                throw new Exception("Курс должен быть от 1 до 4");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
+        if (name.contains("!") || name.contains("?") || name.contains(" ") || name.contains("&") || name.contains("@") ||
+                name.contains("#") || name.contains("$") || name.contains("%") || name.contains("^") || name.contains("*") ||
+                name.contains("(") || name.contains(")")) {
+            try {
+                throw new Exception("Имя должно содержать только буквы");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
+        if (surname.contains("!") || surname.contains("?") || surname.contains(" ") || surname.contains("&") ||
+                surname.contains("@") || surname.contains("#") || surname.contains("$") || surname.contains("%") ||
+                surname.contains("^") || surname.contains("*") || surname.contains("(") || surname.contains(")")) {
+            try {
+                throw new Exception("Имя должно содержать только буквы");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
+        if (gradeOfPhysics < 0 || gradeOfMath < 0 || gradeOfHistory < 0) {
+            try {
+                throw  new Exception("Оценка не может быть отрицательной");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
     }
 
 }
@@ -118,6 +155,7 @@ class GradeOfPhysicsComparator implements Comparator<Student> {
         return (int) ((int) o1.gradeOfPhysics - o2.gradeOfPhysics);
     }
 }
+
 class AverageGradeComparator implements Comparator<Student> {
 
     @Override
