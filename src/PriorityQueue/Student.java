@@ -1,10 +1,9 @@
 package PriorityQueue;
 
-
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Student implements Comparable<Student> {
+public class Student implements Comparable<Student>, StudentCollege {
     final String name;
     final String surname;
     int course;
@@ -12,6 +11,34 @@ public class Student implements Comparable<Student> {
     double gradeOfHistory;
     double gradeOfPhysics;
     double averageGrade;
+
+    public double getGradeOfMath() {
+        return gradeOfMath;
+    }
+
+    public double getGradeOfHistory() {
+        return gradeOfHistory;
+    }
+
+    public double getGradeOfPhysics() {
+        return gradeOfPhysics;
+    }
+
+    public int getCourse() {
+        return course;
+    }
+
+    public double getAverageGrade() {
+        return averageGrade;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public String toString() {
@@ -36,7 +63,7 @@ public class Student implements Comparable<Student> {
         this.surname = surname;
         this.course = course;
         averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
-        if (course==0) {
+        if (course == 0) {
             try {
                 throw new Exception("Ты ввел крус 0, такого быть не может");
             } catch (Exception e) {
@@ -52,8 +79,7 @@ public class Student implements Comparable<Student> {
         this.surname = surname;
         this.course = course;
         this.averageGrade = (gradeOfHistory / 3) + (gradeOfMath / 3) + (gradeOfPhysics / 3);
-        this.averageGrade = averageGrade;
-        if (course==0) {
+        if (course == 0) {
             try {
                 throw new Exception("Ты ввел крус 0, такого быть не может");
             } catch (Exception e) {
@@ -72,7 +98,7 @@ public class Student implements Comparable<Student> {
         this.gradeOfHistory = gradeOfHistory;
         this.gradeOfMath = gradeOfMath;
         averageGrade = (this.gradeOfHistory / 3) + (this.gradeOfMath / 3) + (this.gradeOfPhysics / 3);
-        if (course==0) {
+        if (course == 0) {
             try {
                 throw new Exception("Ты ввел крус 0, такого быть не может");
             } catch (Exception e) {
@@ -81,7 +107,6 @@ public class Student implements Comparable<Student> {
             }
         }
         handlingExceptions();
-
     }
 
 
@@ -138,7 +163,7 @@ public class Student implements Comparable<Student> {
         }
         if (gradeOfPhysics < 0 || gradeOfMath < 0 || gradeOfHistory < 0) {
             try {
-                throw  new Exception("Оценка не может быть отрицательной");
+                throw new Exception("Оценка не может быть отрицательной");
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(1);
@@ -161,7 +186,6 @@ public class Student implements Comparable<Student> {
             }
         }
     }
-
 }
 
 class CourseComparator implements Comparator<Student> {
@@ -203,4 +227,6 @@ class AverageGradeComparator implements Comparator<Student> {
         return (int) (o1.averageGrade - o2.averageGrade);
     }
 }
+
+
 
