@@ -1,7 +1,9 @@
 package PriorityQueue;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Student implements Comparable<Student>, StudentCollege {
     final String name;
@@ -185,6 +187,21 @@ public class Student implements Comparable<Student>, StudentCollege {
                 System.exit(1);
             }
         }
+    }
+    public static List<String> getListOfNames (List<Student> studentList) {
+        return studentList.stream().map(e->e.getName()).collect(Collectors.toList());
+    }
+    public static List<String> getListOfSurnames (List<Student> studentList) {
+        return studentList.stream().map(e->e.getSurname()).collect(Collectors.toList());
+    }
+    public static List<Double> getListOfAvgGrades (List<Student> studentList) {
+        return studentList.stream().map(e->e.getAverageGrade()).collect(Collectors.toList());
+    }
+    public static void getDesignOfMentors (List<Student> studentList) {
+         studentList.stream().forEach(student -> {if (student.getAverageGrade() > 6) {
+             System.out.println(student.getName() + " - прололжает обучение");}
+         else System.out.println(student.getName() + " - на отчисление.");
+         });
     }
 }
 

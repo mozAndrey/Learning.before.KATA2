@@ -21,33 +21,13 @@ public class Main {
         list.add(st5);
         list.add(st6);
         list.add(st7);
-//        System.out.println(list);
-        List<Student> listOfAvgGradeUp6 = list.stream().filter(e->
-                e.getAverageGrade()>6).collect(Collectors.toList());
-        System.out.println("Оценки больше шести: " + listOfAvgGradeUp6);
-
-        List<Student> listOfAvgGradesDown6 = list.stream().filter(e->
-                e.getAverageGrade()<6).collect(Collectors.toList());
-        System.out.println("Оценки меньше шести: " + listOfAvgGradesDown6);
-
-        List<String> listOfNames = list.stream().map(e->e.getName()).collect(Collectors.toList());
-        System.out.println("Имена: " + listOfNames);
-
-        List<String> listOfSurnames = list.stream().map(e->e.getSurname()).collect(Collectors.toList());
-        System.out.println("Фамилии: " + listOfSurnames);
-
-        System.out.println("Решение деканата:");
-        list.stream().forEach(student -> {if (student.getAverageGrade() < 6){
-            System.out.println(student.getName() + " " + student.getSurname() + " На отчисление");
-        }
-        else System.out.println(student.getName() + " " + student.getSurname() + " Молодец");});
-
-        List<Double> listOfGrades = list.stream().map(e->e.getAverageGrade()).collect(Collectors.toList());
-        System.out.println("Список оценок: " + listOfGrades);
-        double avgGradeOfAllStudents = listOfGrades.stream().reduce((a,e) -> (a+e) / (listOfGrades.size()*1.0)).get();
-        System.out.println(avgGradeOfAllStudents);
-        String designOfMentors = (avgGradeOfAllStudents < 6) ? "Отчисляйте всех нахрен" : "Пусть живут";
-        System.out.println(designOfMentors);
+        List<String> listOfNames = Student.getListOfNames(list);
+        List<String> listOfSurnames = Student.getListOfSurnames(list);
+        List<Double> listOfAvgGrades = Student.getListOfAvgGrades(list);
+        Student.getDesignOfMentors(list);
+        System.out.println("Names: "+listOfNames);
+        System.out.println("Surnames: "+listOfSurnames);
+        System.out.println("Grades : "+listOfAvgGrades);
         }
     }
 
